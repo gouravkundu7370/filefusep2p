@@ -285,7 +285,9 @@ export default function SendPage() {
               {file && transferId && (
                 <>
                   <div className="text-center space-y-3">
-                    <h1 className="text-3xl font-bold">Ready to Transfer</h1>
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-primary leading-tight">
+                      Ready to Transfer
+                    </h1>
                     <p className="text-muted-foreground mb-4">
                       Share this link with the recipient
                     </p>
@@ -309,7 +311,7 @@ export default function SendPage() {
                         <Input
                           value={`${window.location.origin}/receive?id=${transferId}`}
                           readOnly
-                          className="pr-10 rounded-r-none border-r-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+                          className="pr-10 rounded-r-none border-r-0 focus-visible:ring-0 focus-visible:ring-offset-0 font-semibold"
                         />
                         <Button
                           variant="secondary"
@@ -334,7 +336,14 @@ export default function SendPage() {
                       {transferProgress > 0 ? (
                         <div className="space-y-3">
                           <div className="flex justify-between text-sm">
-                            <span>Transferring...</span>
+                            {transferProgress == 100 ? (
+                              <span>
+                                Transferred
+                              </span>
+                            ) : (
+                              <span>Transferring...</span>
+                            )}
+                            <span></span>
                             <span>{transferProgress}%</span>
                           </div>
                           <Progress value={transferProgress} className="h-2" />

@@ -206,8 +206,8 @@ export default function ReceivePage() {
     document.body.removeChild(a);
   };
 
-   const searchParams = useSearchParams();
-   const senderId = searchParams.get("id");
+  const searchParams = useSearchParams();
+  const senderId = searchParams.get("id");
 
   return (
     <div className="min-h-screen flex flex-col gradient-bg">
@@ -301,17 +301,24 @@ export default function ReceivePage() {
                 </Button>
               </div>
             ) : (
-              <div className="space-y-4">
-                <div className="text-center space-y-3 mb-6">
-                  <h1 className="text-3xl font-bold">Receiving File</h1>
-                  <Badge
-                    variant="default"
-                    className="bg-green-500 hover:bg-green-500"
-                  >
-                    Connected
-                  </Badge>
+              <div className="space-y-4 ">
+                <div
+                  className="flex flex-col justify-center items-center
+                "
+                >
+                  <div className="text-center space-y-3 mb-6">
+                    <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-primary leading-tight p-2">
+                      Receiving File
+                    </h1>
+                    <Badge
+                      variant="default"
+                      className="bg-green-500 hover:bg-green-500"
+                    >
+                      Connected
+                    </Badge>
+                  </div>
+                  <WifiAnimation active={true} />
                 </div>
-                <WifiAnimation active={true} />
                 {fileMetadata && (
                   <div className="mb-6 text-sm text-center">
                     <p>

@@ -1,99 +1,206 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { ArrowRight } from "lucide-react"
+import React from "react";
+import Link from "next/link";
+import { ArrowRight, File, Shield, Zap } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { Logo } from "@/components/logo";
+import { Stats } from "@/components/stats";
+import { FileTransferCard } from "@/components/file-transfer-card";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col gradient-bg">
       {/* Header */}
-      <header className="container flex items-center justify-end p-4">
-        <ThemeToggle />
+      <header className="container flex items-center justify-between p-4 z-10">
+        <Logo />
+        <div className="flex items-center space-x-4">
+          <Link
+            href="#features"
+            className="text-sm font-medium hover:text-primary transition-colors"
+          >
+            Features
+          </Link>
+          <Link
+            href="#how-it-works"
+            className="text-sm font-medium hover:text-primary transition-colors"
+          >
+            How it works
+          </Link>
+          
+          <ThemeToggle />
+        </div>
       </header>
+      
 
-      {/* Main content */}
-      <main className="flex-1 container flex flex-col items-center justify-center max-w-5xl py-12">
-        <div className="text-center space-y-8 w-full max-w-2xl mx-auto">
-          <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary/80 text-xs font-medium">
-            WebSocket File Transfer
+      {/* Hero section */}
+      <section className="flex-1 container flex flex-col items-center justify-center max-w-6xl py-16 md:py-24">
+        <div className="text-center space-y-6 w-full max-w-3xl mx-auto">
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-accent/10 text-xs font-medium text-accent">
+            <span className="relative flex h-2 w-2 mr-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+            </span>
+            Peer-to-Peer File Transfer
           </div>
 
-          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight">Transfer files securely</h1>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-primary leading-tight">
+            Share files securely and instantly
+          </h1>
 
-          <p className="text-lg text-muted-foreground max-w-md mx-auto">
-            Fast, reliable, and efficient file transfers with our Axum server.
+          <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">
+            Fast, reliable, and private P2P file transfers. No registration
+            required, no size limits.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Link href="/send">
-              <Button size="lg" className="w-full sm:w-auto group px-6 py-6 rounded-xl hover-lift">
+            <Link href={"/send"}>
+              <Button
+                size="lg"
+                className="w-full sm:w-auto group px-8 py-7 rounded-xl hover-lift bg-gradient-primary hover:opacity-90"
+              >
                 Send Files
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Button>
-            </Link>
-            <Link href="/receive">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto px-6 py-6 rounded-xl hover-lift glass">
-                Receive Files
+                <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
           </div>
         </div>
+        {/* <Link href={"/receive"}>
+          <Button>Receive</Button>
+        </Link> */}
 
-        {/* Features */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-24">
-          <div className="p-6 rounded-xl subtle-border hover-lift bg-background/50">
-            <div className="w-10 h-10 rounded-lg bg-secondary/80 flex items-center justify-center mb-4">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                />
-              </svg>
-            </div>
-            <h3 className="text-lg font-medium mb-2">End-to-End Encrypted</h3>
-            <p className="text-muted-foreground text-sm">
-              Your files are encrypted during transfer and never stored on any server.
-            </p>
-          </div>
+        {/* Stats display */}
+        <div className="w-full mt-20">
+          <Stats />
+        </div>
 
-          <div className="p-6 rounded-xl subtle-border hover-lift bg-background/50">
-            <div className="w-10 h-10 rounded-lg bg-secondary/80 flex items-center justify-center mb-4">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3 className="text-lg font-medium mb-2">Lightning Fast</h3>
-            <p className="text-muted-foreground text-sm">
-              WebSocket connections provide the fastest possible transfer speeds.
-            </p>
-          </div>
+        {/* Transfer visualization */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mx-auto mt-20">
+          <FileTransferCard type="send" />
+          <FileTransferCard type="receive" />
+        </div>
 
-          <div className="p-6 rounded-xl subtle-border hover-lift bg-background/50">
-            <div className="w-10 h-10 rounded-lg bg-secondary/80 flex items-center justify-center mb-4">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                />
-              </svg>
+        {/* Features section */}
+        <div id="features" className="w-full max-w-5xl mx-auto mt-24 pt-8">
+          <h2 className="text-3xl font-bold text-center mb-12">
+            Why Choose FileFuse?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+            <div className="feature-card">
+              <div className="icon-box">
+                <Shield className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-medium mb-2">End-to-End Encrypted</h3>
+              <p className="text-muted-foreground text-sm">
+                Your files are encrypted from end to end and never stored on any
+                servers.
+              </p>
             </div>
-            <h3 className="text-lg font-medium mb-2">No Size Limits</h3>
-            <p className="text-muted-foreground text-sm">
-              Transfer files of any size without the restrictions of email or cloud storage.
-            </p>
+
+            <div className="feature-card">
+              <div className="icon-box">
+                <Zap className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-medium mb-2">Lightning Fast</h3>
+              <p className="text-muted-foreground text-sm">
+                Direct peer-to-peer connections provide the fastest possible
+                transfer speeds.
+              </p>
+            </div>
+
+            <div className="feature-card">
+              <div className="icon-box">
+                <File className="h-5 w-5" />
+              </div>
+              <h3 className="text-lg font-medium mb-2">No Size Limits</h3>
+              <p className="text-muted-foreground text-sm">
+                Transfer files of any size without restrictions of traditional
+                sharing methods.
+              </p>
+            </div>
           </div>
         </div>
-      </main>
+
+        {/* How it works section */}
+        <div
+          id="how-it-works"
+          className="w-full max-w-5xl mx-auto mt-24 pt-8 pb-12"
+        >
+          <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+            {/* Connecting line */}
+            <div className="hidden md:block absolute top-16 left-[20%] right-[20%] h-0.5 bg-border"></div>
+
+            {/* Steps */}
+            {[
+              {
+                number: 1,
+                title: "Select Files",
+                description:
+                  "Choose the files you want to send from your device.",
+              },
+              {
+                number: 2,
+                title: "Generate Link",
+                description: "Get a secure link to share with the recipient.",
+              },
+              {
+                number: 3,
+                title: "Peer Connection",
+                description:
+                  "Direct transfer occurs when the recipient opens the link.",
+              },
+            ].map((step, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center text-center"
+              >
+                <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-lg font-bold text-accent mb-4 z-10 relative">
+                  {step.number}
+                </div>
+                <h3 className="text-lg font-medium mb-2">{step.title}</h3>
+                <p className="text-muted-foreground text-sm">
+                  {step.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="container py-6 text-center text-sm text-muted-foreground">
-        <p>No registration required. Files are transferred through our secure Axum server.</p>
+      <footer className="container py-8 border-t border-border flex flex-col justify-center items-center">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <Logo />
+            <p className="text-sm text-muted-foreground">
+              © 2025 FileFuse. All rights reserved.
+            </p>
+          </div>
+
+          {/* If you re-enable these links, use Link here as well */}
+          {/* <div className="mt-4 md:mt-0 flex items-center space-x-6">
+            <Link
+              href="#privacy"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Privacy
+            </Link>
+            <Link
+              href="#terms"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Terms
+            </Link>
+            <Link
+              href="#contact"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Contact
+            </Link>
+          </div> */}
+        </div>
       </footer>
     </div>
-  )
+  );
 }
-

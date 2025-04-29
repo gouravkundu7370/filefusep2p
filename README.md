@@ -85,11 +85,21 @@ const ws = new WebSocket("wss://your-backend-url/ws");
 
 ---
 
-## Screenshots
+### 🎬 Live Demo
 
-| Sender | Receiver |
-|:---|:---|
-| ![Send Page](link-to-sendpage-screenshot) | ![Receive Page](link-to-receivepage-screenshot) |
+![Live Demo](https://i.ibb.co/WvZQNnhf/p2pdemo.gif)
+
+---
+
+### 🖼 Screenshots
+
+| Cover | Link Sharing |
+|-------|--------------|
+| ![Cover](https://i.ibb.co/DPzHBGKX/Coverp2p.png) | ![Link](https://i.ibb.co/21Mm49dT/linkp2p.png) |
+
+| Transfer in Progress | Completed Transfer |
+|----------------------|--------------------|
+| ![Progress](https://i.ibb.co/278VwFyy/processp2p.png) | ![Done](https://i.ibb.co/8nHMN5Xr/p2p-Trasnfer-Complete.png) |
 
 ---
 

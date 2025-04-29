@@ -43,7 +43,7 @@ README.md
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/p2pfiletransfer.git
+git clone https://github.com/gouravkundu7370/filefusep2p.git
 cd p2pfiletransfer
 ```
 
